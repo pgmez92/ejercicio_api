@@ -11,22 +11,23 @@
         {{ item.name }}{{ item.title }}
       </option>
     </select>
-    <main :style="invisible">
-      <div v-if="categoria == 'people'">
+
+    <main>
+      <div :style="invisible" v-if="categoria == 'people'">
         <label><b>Nombre: </b> {{ info.valor.name }}</label>
         <label><b>F.Nacimiento: </b> {{ info.valor.birth_year }}</label>
-        <label><b>Altura: </b> {{ info.valor.heigh }} cm</label>
+        <label><b>Altura: </b> {{ info.valor.height }} cm</label>
         <label><b>Peso: </b> {{ info.valor.mass }} kg</label>
         <label><b>Género: </b> {{ info.valor.gender }}</label>
       </div>
-      <div v-if="categoria == 'films'">
+      <div :style="invisible" v-if="categoria == 'films'">
         <label><b>Título: </b> {{ info.valor.title }}</label>
         <label><b>Dirigida por: </b> {{ info.valor.director }}</label>
         <label><b>Producida por: </b> {{ info.valor.producer }}</label>
         <label><b>Fecha de estreno: </b> {{ info.valor.release_date }}</label>
         <label><b>Prólogo: </b> {{ info.valor.opening_crawl }}</label>
       </div>
-      <div v-if="categoria == 'species'">
+      <div :style="invisible" v-if="categoria == 'species'">
         <label><b>Nombre: </b> {{ info.valor.name }}</label>
         <label><b>Clasificación: </b> {{ info.valor.classification }}</label>
         <label><b>Designación: </b> {{ info.valor.designation }}</label>
@@ -37,7 +38,7 @@
         >
         <label><b>Lengua nativa: </b> {{ info.valor.language }}</label>
       </div>
-      <div v-if="categoria == 'planets'">
+      <div :style="invisible" v-if="categoria == 'planets'">
         <label><b>Nombre: </b> {{ info.valor.name }}</label>
         <label
           ><b>Período de rotación: </b>
@@ -52,6 +53,7 @@
         <label><b>Agua superficial: </b> {{ info.valor.surface_water }}</label>
         <label><b>Población: </b> {{ info.valor.population }} habitantes</label>
       </div>
+
       <img :src="foto" />
     </main>
   </div>
@@ -73,6 +75,7 @@ export default {
 
     //cargar obj
     function cargarObj() {
+      //bindar el disabled
       fetch(`https://swapi.dev/api/${categoria.value}/`)
         .then((res) => res.json())
         .then((datos) => {
@@ -81,6 +84,8 @@ export default {
           datos.results.forEach((element) => {
             opt_obj.push(element);
           });
+          console.log(opt_obj);
+          //bindar el disabled
         });
     }
     //cargar datos del obj
@@ -89,7 +94,7 @@ export default {
         .then((res) => res.json())
         .then((datos) => {
           info.valor = datos;
-          invisible.value = "display:block";
+          invisible.value = "display:grid";
           console.log(info.valor);
         });
     }
@@ -107,3 +112,18 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.icon {
+  height: 30px;
+  width: 30px;
+  border-radius: 5%;
+}
+main {
+  margin-top: 10px;
+  label {
+    margin: auto;
+    margin-top: 5px;
+  }
+}
+</style>
