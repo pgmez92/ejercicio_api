@@ -84,7 +84,7 @@ export default {
           datos.results.forEach((element) => {
             opt_obj.push(element);
           });
-          console.log(opt_obj);
+          //console.log(opt_obj);
           //bindar el disabled
         });
     }
@@ -95,7 +95,7 @@ export default {
         .then((datos) => {
           info.valor = datos;
           invisible.value = "display:grid";
-          console.log(info.valor);
+          /* console.log(info.valor); */
         });
     }
 
