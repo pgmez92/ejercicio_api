@@ -54,7 +54,7 @@
         <label><b>Población: </b> {{ info.valor.population }} habitantes</label>
       </div>
 
-      <img :src="foto" />
+      <!-- <img :src="foto" /> -->
     </main>
   </div>
 </template>
